@@ -1,7 +1,5 @@
 const jsonData = require('./test.txt')
-const array = []
-array.push(jsonData)
 
-//const parsed = array.map(JSON.parse)
+const stringed = JSON.stringify(jsonData)
 
-console.log(typeof array)
+console.log(arrayed)

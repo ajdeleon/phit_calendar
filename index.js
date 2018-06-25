@@ -1,34 +1,29 @@
+const express = require('express')
 const axios = require('axios')
-const cheerio = require('cheerio')
 const fs = require('fs')
 
-let extracted = ''
+const app = express()
+
+let jsonData
 const re =  /{"i18n":.*}/gi
 
-const getData = async () => {
+const getData = async (callback) => {
   try {
     let data = await axios.get('https://phillyimprovtheater.com/shows/')
     data = data.data.replace(/&quot;/g, '\"')
     data = data.match(re)
-    data = JSON.stringify(data)
-    data = data.split(',')
-    data = JSON.parse(data)
+    jsonData = {data: data}
+    callback()
 
-    fs.writeFile('test.txt', data, (err) => {
-    if (err) throw err
-      console.log('File saved')
-    })
   } catch (error) {
     console.error(error)
   }
 }
 
-getData()
+getData(() => console.log('Data pulled'))
 
-// fs.readFile(__dirname + '/test.txt','utf8', (err, data) => {
-//   if (err) {
-//     throw err
-//   }
-//   console.log(JSON.parse(data))
-// })
+app.get('/', (req, res) => res.send('Welcome to the improved calendar'))
+app.get('/data', (req, res) => res.send(jsonData))
 
+
+app.listen(4000, () => console.log("Listening on port 4000"))
