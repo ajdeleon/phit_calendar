@@ -1,21 +1,48 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react'
+import Card from './Card.js'
+import axios from 'axios'
 
-class App extends Component {
+class App extends Component { 
+  // eslint-disable-next-line
+  state = {
+    data: [
+      {title: 'hey', dateDisplay: 'hey', excerpt: 'hey', permalink: 'hey', imageSrc: 'hey'}
+    ],
+    isLoaded: false
+  } 
+
+  componentDidMount() {
+    axios.get('/data')
+      .then( res => {
+        const data = res.data
+        this.setState(prevState => {
+          return {
+            data,
+            isLoaded: true
+          }
+        })
+      })
+  }
   render() {
+    const isLoaded = this.state.isLoaded
+      const [{title, dateDisplay, excerpt, permalink, imageSrc}] = this.state.data
+    
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+        {isLoaded ?
+            this.state.data.map(({title, dateDisplay, excerpt, permalink, imageSrc}) =>   
+            <Card
+              title={title}
+              dateDisplay={dateDisplay}
+              excerpt={excerpt}
+              permalink={permalink}
+              imageSrc={imageSrc}
+              key={title + dateDisplay}/>
+            )
+            : <h1>loading</h1>}
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App
