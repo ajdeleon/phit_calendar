@@ -14,13 +14,9 @@ class App extends Component {
   }
 
   componentDidMount() {
-    axios.get('/data').then(result => {
-      this.setState(prevState => {
-        return {
-          isLoaded: true,
-          data: [...prevState.data, ...result.data],
-        }
-      })
+    axios.get('/data').then(res => {
+      const events = res.data
+      this.setState({ data: [...events], isLoaded: true })
     })
   }
 
@@ -30,7 +26,7 @@ class App extends Component {
     if (error) {
       return <div>Error: {error.message}</div>
     } else if (!isLoaded) {
-      return <h1>Loading...</h1>
+      return <h1>Loading... uhm... yeah...</h1>
     } else {
       return data.map(
         ({ title, dateDisplay, excerpt, permalink, imageSrc }) => {
