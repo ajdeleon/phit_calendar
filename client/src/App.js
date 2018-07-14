@@ -50,7 +50,7 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className="sans-serif">
         <Header />
         <main role="main">{this.renderCards()}</main>
         <Footer />
