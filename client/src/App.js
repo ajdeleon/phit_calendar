@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
-import Card from './Card.js'
 import axios from 'axios'
+
+import Header from './Header.js'
+import Card from './Card.js'
+import Footer from './Footer.js'
 
 class App extends Component {
   // eslint-disable-next-line
@@ -20,7 +23,7 @@ class App extends Component {
     })
   }
 
-  render() {
+  renderCards() {
     const { error, isLoaded, data } = this.state
 
     if (error) {
@@ -43,6 +46,16 @@ class App extends Component {
         }
       )
     }
+  }
+
+  render() {
+    return (
+      <div>
+        <Header />
+        <main role="main">{this.renderCards()}</main>
+        <Footer />
+      </div>
+    )
   }
 }
 
