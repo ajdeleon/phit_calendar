@@ -13,6 +13,14 @@ const getData = async callback => {
   try {
     data = await axios.get('https://phillyimprovtheater.com/shows/')
     data = data.data.replace(/&quot;/g, '"')
+    data = data.replace(/&#039;/g, "'")
+    data = data.replace(/&#8217;/g, "'")
+    data = data.replace(/&lt;p&gt;/g, '')
+    data = data.replace(/&l.....gt;/gi, '...')
+    data = data.replace(/&#038;/g, '&')
+    data = data.replace(/&#8220;/g, '-')
+    data = data.replace(/&#8211;/g, '-')
+    data = data.replace(/&#8221;/g, '-')
     data = data.replace(
       /"i18n":{"find_out_more":"Find out more \\u00bb","for_date":"Events for"},/g,
       ''
