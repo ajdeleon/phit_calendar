@@ -2,19 +2,23 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const Card = ({ title, dateDisplay, excerpt, permalink, imageSrc }) => (
-  <div className="ba mt2 mh4 pb2 flex-ns">
-    <div className="ma-auto">
-      <img className="mw5 mr2 mt4" src={imageSrc} alt={title} />
+  <article aria-labelledby={title}>
+    <div className="ba mt2 mh4 pa2 tc tl-ns flex-ns">
+      <div className="ma-auto">
+        <img className="mw5 mh2 mt4" src={imageSrc} alt={title} />
+      </div>
+      <div>
+        <h1 className="" id={title}>
+          {title}
+        </h1>
+        <h3 className="f4">{dateDisplay}</h3>
+        <p className="f4">{excerpt}</p>
+        <a className="site-blue f3 hover-bg-light-red" href={permalink}>
+          More info here
+        </a>
+      </div>
     </div>
-    <div>
-      <h1 className="">{title}</h1>
-      <h3>{dateDisplay}</h3>
-      <p>{excerpt}</p>
-      <a className="site-blue" href={permalink}>
-        Buy tickets here
-      </a>
-    </div>
-  </div>
+  </article>
 )
 
 Card.propTypes = {
