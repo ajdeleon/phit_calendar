@@ -19,7 +19,11 @@ class App extends Component {
   componentDidMount() {
     axios.get('/data').then(res => {
       const events = res.data
-      this.setState({ data: [...events], isLoaded: true })
+      this.setState({
+        data: [...events],
+        isLoaded: true,
+        currentTime: new Date().toLocaleDateString(),
+      })
     })
   }
 

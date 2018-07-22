@@ -2,6 +2,7 @@ const express = require('express')
 const axios = require('axios')
 const fs = require('fs')
 const cors = require('cors')
+const dateConverter = require('./dateConverter.js')
 
 const app = express()
 
@@ -30,6 +31,7 @@ const getData = async callback => {
       x = JSON.parse(x)
       return x
     })
+    newData = dateConverter(objData)
     callback()
   } catch (error) {
     console.error(error)
@@ -41,6 +43,6 @@ if (!objData) {
 }
 
 app.get('/', (req, res) => res.send('Welcome to the improved calendar'))
-app.get('/data', (req, res) => res.send(objData))
+app.get('/data', (req, res) => res.send(newData))
 
 app.listen(4000, () => console.log('Listening on port 4000'))
