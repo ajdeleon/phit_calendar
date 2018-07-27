@@ -28,7 +28,7 @@ module.exports = function(data) {
     .map((x, i) => {
       return { ...x, endTimeConverted: convertedDates[i] }
     })
-    .filter(show => show.endTimeConverted > new Date())
+    .filter(show => show.endTimeConverted >= new Date())
 
   return convertedData
 }
