@@ -13,7 +13,10 @@ const Card = ({ title, dateDisplay, excerpt, permalink, imageSrc }) => (
         </h1>
         <h3 className="f4">{dateDisplay}</h3>
         <p className="f4">{excerpt}</p>
-        <a className="site-blue f3 hover-bg-light-red" href={permalink}>
+        <a
+          className="site-blue f3 hover-black-80 hover-bg-light-red"
+          href={permalink}
+        >
           More info here
         </a>
       </div>
