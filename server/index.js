@@ -3,6 +3,7 @@ const axios = require('axios')
 const fs = require('fs')
 const cors = require('cors')
 const dateConverter = require('./dateConverter.js')
+const CronJob = require('cron').CronJob
 
 const app = express()
 
@@ -37,9 +38,13 @@ const getData = async callback => {
   }
 }
 
-if (!objData) {
-  getData(() => console.log('Data pulled'))
-}
+getData(() => console.log('Initial data pulled'))
+const job = new CronJob('0 */6 * * *', () => {
+  const d = new Date()
+  getData(() => console.log('Data pulled at: ', d))
+})
+
+job.start()
 
 app.get('/', (req, res) => res.send('Welcome to the improved calendar'))
 app.get('/data', (req, res) => res.send(newData))
