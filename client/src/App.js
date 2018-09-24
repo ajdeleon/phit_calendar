@@ -41,7 +41,7 @@ class App extends Component {
             <Card
               title={title}
               dateDisplay={dateDisplay}
-              excerpt={excerpt}
+              excerpt={excerpt.substr(9, excerpt.length - 19)}
               permalink={permalink}
               imageSrc={imageSrc}
               key={title + dateDisplay}

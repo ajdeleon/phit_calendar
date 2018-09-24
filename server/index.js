@@ -16,7 +16,6 @@ const getData = async callback => {
     data = data.data.replace(/&quot;/g, '"')
     data = data.replace(/&#039;/g, "'")
     data = data.replace(/&#8217;/g, "'")
-    data = data.replace(/&lt;p&gt;/g, '')
     data = data.replace(/&l.....gt;/gi, '...')
     data = data.replace(/&#038;/g, '&')
     data = data.replace(/&#8220;/g, '-')
