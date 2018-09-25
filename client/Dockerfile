@@ -6,6 +6,5 @@ COPY . .
 RUN npm run build
 
 FROM nginx
-EXPOSE 3000
-COPY ./phit_calendar.conf /etc/nginx/conf.d/
+COPY ./phit_calendar.conf /etc/nginx/conf.d/default.conf
 COPY --from=build /app/build /usr/share/nginx/html
