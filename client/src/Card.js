@@ -4,8 +4,8 @@ import PropTypes from 'prop-types'
 const Card = ({ title, dateDisplay, excerpt, permalink, imageSrc }) => (
   <article aria-labelledby={title}>
     <div className="ba mt2 mh4 pa2 tc tl-ns flex-ns">
-      <div className="ma-auto">
-        <img className="mw5 mh2 mt4" src={imageSrc} alt={title} />
+      <div className="mt2 pt3">
+        <img className="mw5 mh2" src={imageSrc} alt={title} />
       </div>
       <div>
         <h1 className="" id={title}>
