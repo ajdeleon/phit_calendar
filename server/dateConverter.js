@@ -28,7 +28,6 @@ module.exports = function(data) {
     .map((x, i) => {
       return { ...x, endTimeConverted: convertedDates[i] }
     })
-    .filter(show => Date.parse(show.endTimeConverted) >= Date.now() - 86400000)
-  console.log(convertedData)
+    .filter(show => Date.parse(show.endTimeConverted) >= Date.now() - 96400000)
   return convertedData
 }

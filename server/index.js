@@ -9,11 +9,12 @@ const app = express()
 
 let data
 let objData
+let newData
 const re = /{"eventId":.*}/gi
 
 const getData = async callback => {
   try {
-    data = await axios.get('https://phillyimprovtheater.com/shows/')
+    data = await axios.get('https://phillyimprovtheater.com/shows/month')
     data = data.data.replace(/&quot;/g, '"')
     data = data.replace(/&#039;/g, "'")
     data = data.replace(/&#8217;/g, "'")
