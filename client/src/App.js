@@ -35,7 +35,14 @@ class App extends Component {
     } else if (!isLoaded) {
       return <h1>Loading... uhm... yeah...</h1>
     } else {
-      return data.map(
+      return data
+        .filter(({eventId}) => {
+          const eventDate = new Date(eventId.slice(-10))
+          const yesterday = new Date()
+          yesterday.setTime(yesterday.getTime() - (24*60*60*1000))
+          return eventDate >= yesterday
+        }) 
+        .map(
         ({ title, dateDisplay, excerpt, permalink, imageSrc }) => {
           return (
             <Card
